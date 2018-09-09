@@ -20,4 +20,5 @@ Ejemplo de salida:
 ║  ▊▊▊▊▊    ▊  ▊     ║
 ║   ▊▊▊     ▊▊       ║
 ╚════════════════════╝
-
+Generación: 10, Células vivas: 30
+```
