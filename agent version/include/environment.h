@@ -35,7 +35,7 @@ public:
 	
 	friend std::ostream& operator<<(std::ostream&,  Environment*);
 	
-public:
+private:
 	Neighbors getNeighborsOf(Agent* );
 };
 
