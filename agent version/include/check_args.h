@@ -12,10 +12,10 @@ private:
 	const std::string opciones = "-r NROWS -c NCOLS -i ITERATIONS -s PROBLIVE [-h]";
 
 	const std::string descripcion  = "Descripción:\n"
-		"\t-r   Número de filas\n"
-		"\t-c   Número de columnas\n"
-		"\t-i   Número de iteraciones\n"
-		"\t-s   Probabilidad incial de que una célula esté viva\n";
+		                             "\t-r   Número de filas\n"
+									 "\t-c   Número de columnas\n"
+									 "\t-i   Número de iteraciones\n"
+									 "\t-s   Probabilidad incial de que una célula esté viva\n";
 	
 	typedef struct args_t{
 		int32_t NROWS;
@@ -24,6 +24,7 @@ private:
 		float   PROBLIVE;
 	} args_t;
 	
+	// 2) Modificar constructor
 	// 2) Modificar ciclo "getopt" en método ::getArgs()
 	
 	args_t  parametros;
@@ -38,7 +39,7 @@ public:
 	args_t getArgs();;
 	
 private:
-	void printUsage(char* name);
+	void printUsage();
 	
 	
 };
