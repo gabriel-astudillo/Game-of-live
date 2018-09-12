@@ -3,30 +3,30 @@
 
 #include "global.h"
 
-struct args_t{
-	int32_t NROWS;
-	int32_t NCOLS;
-	int32_t ITERATIONS;
-	float   PROBLIVE;
-};
 
-
-class check {
+class checkArgs {
 private:
 	
-	struct args_t  parametros;
+	typedef struct args_t{
+		int32_t NROWS;
+		int32_t NCOLS;
+		int32_t ITERATIONS;
+		float   PROBLIVE;
+	}args_t;
+	
+	args_t  parametros;
 	
 	int argc;
 	char **argv;
 
 	
 public:
-	check(int _argc , char **_argv);
-	~check();
-	struct args_t check_args();
+	checkArgs(int _argc , char **_argv);
+	~checkArgs();
+	args_t getArgs();;
 	
 private:
-	void print_usage(char* name);
+	void printUsage(char* name);
 	
 	
 };
