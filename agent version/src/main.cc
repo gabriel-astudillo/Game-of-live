@@ -12,17 +12,13 @@ int main(int argc , char *argv []) {
 	uint32_t iteraciones;
 	float    probLive;
 	
-		
-	struct args_t  parametros;
 	
-	check argumentos = check(argc, argv);
+	checkArgs* argumentos = new checkArgs(argc, argv);
 	
-	parametros = argumentos.check_args();
-	
-	filas       = parametros.NROWS;
-	columnas    = parametros.NCOLS;
-	iteraciones = parametros.ITERATIONS;
-	probLive    = parametros.PROBLIVE;
+	filas       = argumentos->getArgs().NROWS;
+	columnas    = argumentos->getArgs().NCOLS;
+	iteraciones = argumentos->getArgs().ITERATIONS;
+	probLive    = argumentos->getArgs().PROBLIVE;
 	
 	// Crear el ambiente
 	CoordXY  size_env = {columnas, filas};

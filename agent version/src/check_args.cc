@@ -11,7 +11,7 @@ extern int optind, opterr, optopt;
  */
 
 
-check::check(int _argc , char **_argv){
+checkArgs::checkArgs(int _argc , char **_argv){
 	parametros.NROWS        = 0;
 	parametros.NCOLS        = 0;
 	parametros.ITERATIONS   = 0;
@@ -22,11 +22,11 @@ check::check(int _argc , char **_argv){
 	
 }
 
-check::~check(){
+checkArgs::~checkArgs(){
 	
 }
 
-struct args_t check::check_args(){
+checkArgs::args_t checkArgs::getArgs(){
 	int opcion;
 	std::string optString = "r:c:i:s:h";
 	
@@ -46,7 +46,7 @@ struct args_t check::check_args(){
 					break;
 			case 'h':
 			default:
-					print_usage(argv[0]);
+					printUsage(argv[0]);
 					exit(EXIT_FAILURE);
 		}
 	}
@@ -55,14 +55,14 @@ struct args_t check::check_args(){
 		 parametros.NCOLS <= 0 ||
 		 parametros.ITERATIONS <= 0 ||
 	     parametros.PROBLIVE <= 0.0 || parametros.PROBLIVE > 1.0) {
-		print_usage(argv[0]);
+		printUsage(argv[0]);
 		exit(EXIT_FAILURE);
 	}
 	
 	return(parametros);
 }
 
-void check::print_usage(char* name){
+void checkArgs::printUsage(char* name){
 	char opciones[] = "-r NROWS -c NCOLS -i ITERATIONS -s PROBLIVE [-h]\n";
 
 	char descripcion[] = "Descripción:\n"
