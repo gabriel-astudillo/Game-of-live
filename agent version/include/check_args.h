@@ -6,13 +6,25 @@
 
 class checkArgs {
 private:
+	// 1) Modificar esta sección
+	const std::string optString = "r:c:i:s:h";
+	
+	const std::string opciones = "-r NROWS -c NCOLS -i ITERATIONS -s PROBLIVE [-h]";
+
+	const std::string descripcion  = "Descripción:\n"
+		                             "\t-r   Número de filas\n"
+									 "\t-c   Número de columnas\n"
+									 "\t-i   Número de iteraciones\n"
+									 "\t-s   Probabilidad incial de que una célula esté viva\n";
 	
 	typedef struct args_t{
 		int32_t NROWS;
 		int32_t NCOLS;
 		int32_t ITERATIONS;
 		float   PROBLIVE;
-	}args_t;
+	} args_t;
+	
+	// 2) Modificar ciclo "getopt" en método ::getArgs()
 	
 	args_t  parametros;
 	
