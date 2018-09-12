@@ -4,13 +4,6 @@
 extern char *optarg;
 extern int optind, opterr, optopt;
 
-
-/*
- *		Funcion que imprime en stdout el uso
- *		del programa.
- */
-
-
 checkArgs::checkArgs(int _argc , char **_argv){
 	parametros.NROWS        = 0;
 	parametros.NCOLS        = 0;
