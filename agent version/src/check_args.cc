@@ -8,7 +8,7 @@ checkArgs::checkArgs(int _argc , char **_argv){
 	parametros.NROWS        = 0;
 	parametros.NCOLS        = 0;
 	parametros.ITERATIONS   = 0;
-	parametros.PROBLIVE      = 0.0;
+	parametros.PROBLIVE     = 0.0;
 	
 	argc = _argc;
 	argv = _argv;
@@ -38,7 +38,7 @@ checkArgs::args_t checkArgs::getArgs(){
 					break;
 			case 'h':
 			default:
-					printUsage(argv[0]);
+					printUsage();
 					exit(EXIT_FAILURE);
 		}
 	}
@@ -47,15 +47,15 @@ checkArgs::args_t checkArgs::getArgs(){
 		 parametros.NCOLS <= 0 ||
 		 parametros.ITERATIONS <= 0 ||
 	     parametros.PROBLIVE <= 0.0 || parametros.PROBLIVE > 1.0) {
-		printUsage(argv[0]);
+		printUsage();
 		exit(EXIT_FAILURE);
 	}
 	
 	return(parametros);
 }
 
-void checkArgs::printUsage(char* name){
-	printf("Uso: %s %s\n%s\n", name, opciones.c_str(), descripcion.c_str());
+void checkArgs::printUsage(){
+	printf("Uso: %s %s\n%s\n", argv[0], opciones.c_str(), descripcion.c_str());
 }
 
 
