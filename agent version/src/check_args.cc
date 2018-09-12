@@ -21,7 +21,6 @@ checkArgs::~checkArgs(){
 
 checkArgs::args_t checkArgs::getArgs(){
 	int opcion;
-	std::string optString = "r:c:i:s:h";
 	
 	while ((opcion = getopt (argc, argv, optString.c_str())) != -1){
 		switch (opcion) {
@@ -56,15 +55,7 @@ checkArgs::args_t checkArgs::getArgs(){
 }
 
 void checkArgs::printUsage(char* name){
-	char opciones[] = "-r NROWS -c NCOLS -i ITERATIONS -s PROBLIVE [-h]\n";
-
-	char descripcion[] = "Descripción:\n"
-	                     "\t-r   Número de filas\n"
-	                     "\t-c   Número de columnas\n"
-					     "\t-i   Número de iteraciones\n"
-					     "\t-s   Probabilidad incial de que una célula esté viva\n";
-
-	printf("Uso: %s %s\n%s\n", name, opciones, descripcion);
+	printf("Uso: %s %s\n%s\n", name, opciones.c_str(), descripcion.c_str());
 }
 
 
