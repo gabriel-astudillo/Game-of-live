@@ -14,10 +14,10 @@ private:
 	const std::string opciones = "-r NROWS -c NCOLS -i ITERATIONS -s PROBLIVE [-h]";
 
 	const std::string descripcion  = "Descripción:\n"
-								     "\t-r   Número de filas\n"
-									 "\t-c   Número de columnas\n"
-									 "\t-i   Número de iteraciones\n"
-									 "\t-s   Probabilidad incial de que una célula esté viva\n";
+					"\t-r   Número de filas\n"
+					"\t-c   Número de columnas\n"
+					"\t-i   Número de iteraciones\n"
+					"\t-s   Probabilidad incial de que una célula esté viva\n";
 	
 	typedef struct args_t{
 		int32_t NROWS;
