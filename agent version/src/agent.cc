@@ -53,7 +53,9 @@ void Agent::update(){
 }
 
 uint8_t Agent::getLivingNeighbors(void) {
-	//Recorre el vector agentNeighbors y
+	// Consulta al ambiente cuantos vecinos vivos tiene
+	
+	//Recorrer el vector agentNeighbors y
 	//Determinar los agentes LIVE
 	uint8_t livingNeighbors;
 	

@@ -1,5 +1,5 @@
 #include "global.h"
-#include "check_args.h"
+#include "checkArgs.hpp"
 
 #include "agent.h"
 #include "environment.h"
