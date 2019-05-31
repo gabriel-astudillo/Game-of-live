@@ -1,8 +1,8 @@
 #ifndef _ENV_H_
 #define _ENV_H_
 
-#include "global.h"
-#include "agent.h"
+#include <global.h>
+#include <agent.h>
 
 
 class Environment {
@@ -21,7 +21,7 @@ public:
 	
 	CoordXY getSize();
 	
-	void     addAgent(std::vector<Agent*> );
+	void     addAgent(Agent* );
 	uint32_t getCapacityAgents();
 	uint32_t getTotalAgents();
 	Agent*   getAgent(uint32_t _id);

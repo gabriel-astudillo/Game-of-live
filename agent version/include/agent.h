@@ -1,11 +1,13 @@
 #ifndef _AGENT_HH_
 #define _AGENT_HH_
 
-#include "global.h"
+#include <global.h>
+
+class Environment;
 
 class Agent{
 public:
-	typedef double value_type; //Necesario para libkdtree
+	static Environment* _myEnv;
 	
 private:
     uint32_t id;
