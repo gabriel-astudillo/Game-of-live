@@ -1,4 +1,7 @@
-#include "agent.h"
+#include <agent.h>
+#include <environment.h>
+
+Environment* Agent::_myEnv;
 
 Agent::Agent(const uint32_t& _id , const float _probLive){
 	id      = _id;
@@ -6,6 +9,9 @@ Agent::Agent(const uint32_t& _id , const float _probLive){
 	float probLive = (float)rand() / (float)RAND_MAX;
 	state[ACTUAL] = probLive <= _probLive ? LIVE : DEAD;
 	state[FUTURE] = DEAD;
+	
+	CoordXY coordxy = { id % _myEnv->getSize().x, id / _myEnv->getSize().x };
+	this->setCoordxy(coordxy);
 }
 
 Agent::~Agent(void) {

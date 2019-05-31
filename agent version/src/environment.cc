@@ -1,4 +1,4 @@
-#include "environment.h"
+#include <environment.h>
 
 Environment::Environment(const CoordXY & _size){
 	size = _size;
@@ -8,22 +8,17 @@ Environment::Environment(){
 	size = size_default;
 }
 
+Environment::~Environment(){
+	
+}
+
 
 CoordXY Environment::getSize(){
 	return(size);
 }
 
-
-void Environment::addAgent(std::vector<Agent*> _agents){
-	agents = _agents;
-	
-	for(auto const& fooAgent : agents){
-		uint32_t id;
-		CoordXY coordxy;
-		id = fooAgent->getId();
-		coordxy = { id % this->getSize().x, id / this->getSize().x };
-		fooAgent->setCoordxy(coordxy);
-	}
+void Environment::addAgent(Agent* _agent){
+	agents.push_back(_agent);
 }
 
 uint32_t Environment::getCapacityAgents(){
