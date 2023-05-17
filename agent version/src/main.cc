@@ -1,5 +1,6 @@
 #include <global.h>
 #include <checkArgs.hpp>
+#include <clock.h>
 
 #include <agent.h>
 #include <environment.h>
@@ -7,12 +8,12 @@
 
 int main(int argc, char *argv [])
 {
-
 	uint32_t filas;
 	uint32_t columnas;
 	uint32_t iteraciones;
 	float    probLive;
-
+	uint32_t typeOfProc;
+	uint32_t display;
 
 	checkArgs* argumentos = new checkArgs(argc, argv);
 
@@ -20,31 +21,60 @@ int main(int argc, char *argv [])
 	columnas    = argumentos->getArgs().NCOLS;
 	iteraciones = argumentos->getArgs().ITERATIONS;
 	probLive    = argumentos->getArgs().PROBLIVE;
+	typeOfProc	= argumentos->getArgs().TYPEOFPROC;
+	display		= argumentos->getArgs().DISPLAY;
 
 	// Crear el ambiente
 	CoordXY  size_env = {columnas, filas};
+
+	srand(1);
 	Environment* universe = new Environment(size_env);
 	
-	//Crear los agentes
-	// Cada agente se agrega al ambiente, con sus respectivas
-	// coordenadas (x,y) a partir de su id y el tamaño del universo
-	
-	//srand(time(NULL));
-	Agent::_myEnv = universe;
-	for(uint32_t id = 0; id < universe->getCapacityAgents(); id++) {	
-		universe->addAgent( new Agent(id, probLive) );
+	universe->initEnvironment(probLive);
+
+	Environment* universeVectorial{nullptr};
+	if (typeOfProc == 1) {
+		srand(1);
+		universeVectorial = new Environment(size_env);
+		universeVectorial->initEnvironment(probLive);
 	}
 
-	universe->setNeighborsAgents();
+	uint32_t sequentialProc {0};
+	uint32_t vectorialProc {1};
+	float sumSeq {}, sumVec {}, avgSeq {}, avgVec {};
 
 	for(uint32_t it = 0; it < iteraciones; it++) {
-		puts ("\033[H\033[J");
-		universe->showAgents(it);
-		universe->applyAgentsRules();
+		
+		if (display) universe->displayBoard(it);
+
+		sumSeq += measureTime([&](){universe->applyAgentsRules(sequentialProc);});
+
+		if (typeOfProc) sumVec += measureTime([&](){universeVectorial->applyAgentsRules(vectorialProc);});
+
+		universe->printDataSec(it);
+
+		if (typeOfProc) universeVectorial->printDataVec();
+
 		universe->updateAgents();
-		//getchar();
+
+		if (typeOfProc) universeVectorial->updateAgents();
+
 		usleep(100000);
 	}
+
+	auto calculateAvg = [&] (float sum){
+		float avg {};
+		avg = sum/iteraciones;
+		return avg;
+	};
+	
+	avgSeq = calculateAvg(sumSeq);
+
+	if (typeOfProc) avgVec = calculateAvg(sumVec);
+
+	std::cout <<"\n" << avgSeq << " ms";
+
+	if (typeOfProc) std::cout << " : " <<avgVec << " ms\n";
 
 	/*
 	============PRUEBAS DE CONCEPTO BEGIN============

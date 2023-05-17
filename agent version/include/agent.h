@@ -16,6 +16,7 @@ private:
 	State state[2];
 
 	Neighbors agentNeighbors;
+	//StateNeighbors statesNeighbors;
 
 public:
 	
@@ -27,18 +28,22 @@ public:
 	void     setCoordxy(const CoordXY& );
 	uint32_t getId(void) const;
 
-	State getState() const;
+	//StateNeighbors getStateNeighbors();
+
+	State& getState();
 	
-	void applyRules();
+	void applyRules(uint32_t a);
 	void update();
 
+	Neighbors& getNeighbors() { return agentNeighbors; }	
 	void setNeighbors( const Neighbors);
 	
 	friend std::ostream& operator<<(std::ostream&,  Agent*);
 
 	
 private:
-	uint8_t getLivingNeighbors();
+	float getLivingNeighbors();
+	float getLivingNeighborsVectorial();
 
 };
 #endif
